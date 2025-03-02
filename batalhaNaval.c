@@ -1,40 +1,144 @@
 #include <stdio.h>
+#define linhas 7
+#define colunas 7
+#define LINHAS 10
+#define COLUNAS 10
 
-// Desafio Batalha Naval - MateCheck
-// Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
-// Siga os comentários para implementar cada parte do desafio.
+int main(){
 
-int main() {
-    // Nível Novato - Posicionamento dos Navios
-    // Sugestão: Declare uma matriz bidimensional para representar o tabuleiro (Ex: int tabuleiro[5][5];).
-    // Sugestão: Posicione dois navios no tabuleiro, um verticalmente e outro horizontalmente.
-    // Sugestão: Utilize `printf` para exibir as coordenadas de cada parte dos navios.
+//cone
 
-    // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
-    // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
-    // Sugestão: Posicione quatro navios no tabuleiro, incluindo dois na diagonal.
-    // Sugestão: Exiba o tabuleiro completo no console, mostrando 0 para posições vazias e 3 para posições ocupadas.
+int cone[linhas][colunas] = {
+    {0, 0, 0, 1, 0, 0, 0},
+    {0, 0, 1, 1, 1, 0, 0},
+    {0, 1, 1, 1, 1, 1, 0},
+    {1, 1, 1, 1, 1, 1, 1},
+    {1, 1, 1, 1, 1, 1, 1},
+    {1, 1, 1, 1, 1, 1, 1},
+    {1, 1, 1, 1, 1, 1, 1}
+};
 
-    // Nível Mestre - Habilidades Especiais com Matrizes
-    // Sugestão: Crie matrizes para representar habilidades especiais como cone, cruz, e octaedro.
-    // Sugestão: Utilize estruturas de repetição aninhadas para preencher as áreas afetadas por essas habilidades no tabuleiro.
-    // Sugestão: Exiba o tabuleiro com as áreas afetadas, utilizando 0 para áreas não afetadas e 1 para áreas atingidas.
+// mostrar o cone
 
-    // Exemplos de exibição das habilidades:
-    // Exemplo para habilidade em cone:
-    // 0 0 1 0 0
-    // 0 1 1 1 0
-    // 1 1 1 1 1
-    
-    // Exemplo para habilidade em octaedro:
-    // 0 0 1 0 0
-    // 0 1 1 1 0
-    // 0 0 1 0 0
-
-    // Exemplo para habilidade em cruz:
-    // 0 0 1 0 0
-    // 1 1 1 1 1
-    // 0 0 1 0 0
-
-    return 0;
+for (int i = 0; i < linhas; i++) {
+    for (int j = 0; j < colunas; j++) {
+        if (cone[i][j] == 1)
+            printf("1"); 
+        else
+            printf("0");  
+    }
+    printf("\n");
 }
+
+    printf("\n");
+
+//cruz
+
+int cruz[linhas][colunas] = {
+    {0, 0, 0, 1, 0, 0, 0},
+    {0, 0, 0, 1, 0, 0, 0},
+    {0, 0, 0, 1, 0, 0, 0},
+    {1, 1, 1, 1, 1, 1, 1},
+    {0, 0, 0, 1, 0, 0, 0},
+    {0, 0, 0, 1, 0, 0, 0},
+    {0, 0, 0, 1, 0, 0, 0}
+};
+
+//mostrar a cruz
+
+for (int i = 0; i < linhas; i++) {
+    for (int j = 0; j < colunas; j++) {
+        if (cruz[i][j] == 1)
+            printf("1");
+        else
+            printf("0"); 
+    }
+    printf("\n");
+}
+
+    printf("\n");
+
+//octaedro
+ 
+    int octaedro1[linhas][colunas] = {
+        {0, 0, 0, 1, 0, 0, 0},
+        {0, 0, 1, 1, 1, 0, 0},
+        {0, 1, 1, 1, 1, 1, 0},
+        {1, 1, 1, 1, 1, 1, 1},
+        {0, 1, 1, 1, 1, 1, 0},
+        {0, 0, 1, 1, 1, 0, 0},
+        {0, 0, 0, 1, 0, 0, 0}
+    };
+
+// mostrar o octaedro
+
+    for (int i = 0; i < linhas; i++) {
+        for (int j = 0; j < colunas; j++) {
+            if (octaedro1[i][j] == 1)
+                printf("1");  
+            else
+                printf("0");
+        }
+        printf("\n");
+    }
+
+// tabuleiro 10x10
+
+    int tabuleiro2[LINHAS][COLUNAS] = {0};// (0) agua
+
+    //(3)navio
+
+    tabuleiro2[1][2] = 3;// horizontal 
+    tabuleiro2[1][3] = 3;
+    tabuleiro2[1][4] = 3;
+
+    tabuleiro2[5][2] = 3;//vertical
+    tabuleiro2[6][2] = 3;
+    tabuleiro2[7][2] = 3;
+
+    tabuleiro2[0][9] = 3;//diagonal
+    tabuleiro2[1][8] = 3;
+    tabuleiro2[2][7] = 3;
+
+    tabuleiro2[7][5] = 3;//diagonal
+    tabuleiro2[8][6] = 3;
+    tabuleiro2[9][7] = 3;
+
+    // areas afetadas pela habilidade
+
+    tabuleiro2[2][1] = 5; //(5)ataque
+    tabuleiro2[7][4] = 5;
+    tabuleiro2[9][8] = 5;
+
+    printf("Tabuleiro antes do ataque:\n\n");
+
+    for (int i = 0; i < LINHAS; i++) {
+        for (int j = 0; j < COLUNAS; j++) {
+            if (tabuleiro2[i][j] == 3)
+                printf("3");  
+            else
+                printf("0");
+        }
+        printf("\n");
+    }
+    printf("\n");
+
+    printf("Tabuleiro depois do ataque:\n\n");
+
+    for (int i = 0; i < LINHAS; i++) {
+        for (int j = 0; j < COLUNAS; j++) {
+            if (tabuleiro2[i][j] == 3)
+                printf("3");  
+            else if (tabuleiro2[i][j] == 5)
+                printf("5");
+            else
+                printf("0");
+            
+        }
+        printf("\n");
+    }
+
+return 0;
+
+}
+
